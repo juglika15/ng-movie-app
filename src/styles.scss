@@ -1,1 +1,245 @@
-/* You can add global styles to this file, and also import other style files */
+$md-dark-color: #1a5b59;
+$dark-color: #293035;
+$light-dark-color: #292929;
+$yellow-color: #ddc813;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background-color: $dark-color;
+
+  .container {
+    max-width: 1280px;
+
+    margin: 0 auto;
+    padding: 1rem 1rem 0 1rem;
+    background-color: $dark-color;
+  }
+}
+
+/* Styles for a search container */
+.search-container {
+  background-color: $md-dark-color;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for a logo */
+.logo {
+  text-align: center;
+  width: 190px;
+  background-color: $yellow-color;
+  padding: 0.8rem 0;
+  border-radius: 1.2rem;
+}
+
+.logo p {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.logo p span {
+  color: black;
+}
+
+.search-element {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.search-element h3 {
+  align-self: center;
+  margin-right: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.search-element .form-control {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  border: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  outline: none;
+  color: $light-dark-color;
+  width: 350px;
+}
+.search-list {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  z-index: 10;
+}
+
+/* Styles for a search list item */
+.search-list .search-list-item {
+  background-color: $light-dark-color;
+  padding: 0.5rem;
+  border-bottom: 1px solid $dark-color;
+  width: calc(350px - 8px);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.search-list .search-list-item:hover {
+  background-color: #1f1f1f;
+}
+
+.search-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.search-item-thumbnail img {
+  width: 40px;
+  margin-right: 1rem;
+}
+.search-item-info h3 {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.search-item-info p {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.search-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.search-list::-webkit-scrollbar-thumb {
+  background-color: $yellow-color;
+  outline: none;
+  border-radius: 10px;
+}
+
+.result-container {
+  padding: 3rem 0;
+}
+.movie-poster img {
+  max-width: 300px;
+  margin: 0 auto;
+  border: 2px solid #fff;
+}
+.movie-info {
+  text-align: center;
+  color: #fff;
+  padding-top: 3rem;
+}
+
+.movie-title {
+  font-size: 2rem;
+  color: gold;
+}
+
+.movie-misc-info {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.movie-info .released {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.movie-info .director {
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+.movie-info .genre {
+  background-color: $light-dark-color;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 3px;
+}
+.movie-info .plot {
+  max-width: 400px;
+  margin: 1rem auto;
+}
+.movie-info .country {
+  font-style: italic;
+}
+
+.movie-info .country img {
+  display: inline-block;
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 80px;
+}
+
+.stats {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-left: 40%;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+.list {
+  color: #fff;
+  font-size: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+.add-container {
+  margin-top: 1rem;
+}
+.add {
+  font-size: 1.2rem;
+  background-color: gold;
+  padding: 1rem;
+  border: none;
+  border-radius: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="container">
+    <button class="back" routerLink="/" (click)="toZero()">< Back</button>
+    <div class="search-container">
+      <div class="search-element">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search movie..."
+          [(ngModel)]="search1"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search movie..."
+          [(ngModel)]="search2"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search movie..."
+          [(ngModel)]="search3"
+        />
+      </div>
+      <button class="button" (click)="getData()">Search</button>
+    </div>
+    <div *ngIf="combinedRuntime$ | async as combinedRuntime" class="combined">
+      Combined Runtime:
+      <span class="minutes">{{ combinedRuntime }}</span> minutes
+    </div>
+    <div class="combined" *ngIf="apiService.populationSum">
+      Combined Population:
+      <span class="minutes">{{ apiService.populationSum }}</span>
+    </div>
+  </div>
+</div>

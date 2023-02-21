@@ -16,9 +16,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ActorNamesPipe } from './actor-names.pipe';
+import { CombinedStatsComponent } from './combined-stats/combined-stats.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MoviesComponent } from './movies/movies.component';
+import { MyListComponent } from './my-list/my-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ActorNamesPipe],
+  declarations: [AppComponent, ActorNamesPipe, CombinedStatsComponent, MoviesComponent, MyListComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -26,6 +30,7 @@ import { ActorNamesPipe } from './actor-names.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule,
+    AppRoutingModule,
   ],
   providers: [
     {

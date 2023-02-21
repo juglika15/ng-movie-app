@@ -6,10 +6,24 @@ export interface SearchMovie {
 
 export interface Movie extends SearchMovie {
   Runtime: string;
+  Genre: string;
+  Director: string;
   Actors: string;
   Country: string;
+  Plot: string;
 }
 
 export interface Search {
-  Search: Array<SearchMovie>;
+  Search: SearchMovie[];
+}
+
+export interface Country {
+  name: CountryName;
+  cca2: string;
+  currencies: any;
+  population: number;
+}
+
+export interface CountryName {
+  common: string;
 }

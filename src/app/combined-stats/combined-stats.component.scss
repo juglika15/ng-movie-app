@@ -1,0 +1,48 @@
+.search-element {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  background-color: gold;
+  border: none;
+  padding: 1rem;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+.combined {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.minutes {
+  color: orange;
+}
+
+.back {
+  background-color: orange;
+  border: none;
+  padding: 0.7rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  color: #fff;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}

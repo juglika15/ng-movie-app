@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="logo">
+      <p>OMDB <span>API</span></p>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="stats" routerLink="combinedStats">Combined stats</div>
+    <div class="list" routerLink="myList">My List</div>
+  </div>
+
+  <div class="search-container">
+    <div class="search-element">
+      <h3>Search Movie:</h3>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="search"
+        placeholder="Search movie..."
+      />
+
+      <div *ngIf="!showMovie" class="search-list">
+        <div
+          *ngFor="let movie of searchResults$ | async"
+          (click)="findMovie(movie?.Title)"
+          class="search-list-item"
+        >
+          <div class="search-item-thumbnail">
+            <img [src]="movie?.Poster" />
+          </div>
+          <div class="search-item-info">
+            <h3>{{ movie?.Title }}</h3>
+            <p>{{ movie?.Year }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="result-container">
+      <div class="result-grid" *ngIf="result$ | async as movie">
+        <div class="movie-poster">
+          <img [src]="movie?.Poster" alt="movie poster" />
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">{{ movie.Title }}</h3>
+          <ul class="movie-misc-info">
+            <li class="released">
+              Released {{ releace(movie.Year) }} years ago
+            </li>
+          </ul>
+          <p class="genre"><b>Genre:</b> {{ movie.Genre }}</p>
+          <p class="director"><b>Director:</b> {{ movie?.Director }}</p>
+          <p class="actors"><b>Actors: </b>{{ movie?.Actors | actorNames }}</p>
+          <p class="plot"><b>Plot:</b> {{ movie?.Plot }}</p>
+          Country:
+          <span class="country" *ngFor="let country of apiService.countries">
+            {{ country.country }}
+            <img src="{{ country.flag }}" alt="" />
+          </span>
+          <div>
+            Currency:
+            <span *ngFor="let currency of apiService.currency">
+              {{ currency }}
+            </span>
+            <div class="add-container">
+              <button class="add">Add to the List</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
-import { Search, SearchMovie } from './app.model';
+import {
+  catchError,
+  from,
+  map,
+  Observable,
+  of,
+  reduce,
+  switchMap,
+  tap,
+} from 'rxjs';
+import { Country, Movie, Search, SearchMovie } from './app.model';
 import {
   COUNTRY_API_BASE,
   FLAG_API_BASE,
@@ -23,43 +32,56 @@ export class AppApiService {
 
   countryApiEnd: string = '?fullText=true';
   flagApiEnd: string = '.png';
-  flag: string = '';
+  countries = [{ country: '', flag: '' }];
 
-  searchResults: Observable<SearchMovie[]> | undefined;
-
-  searchMovie(title: string): Observable<object> {
-    this.searchResults = this.http
-      .get(`${this.movieSearchApiBase}${title}`)
-      .pipe(map((x: any) => x?.Search));
-    return this.searchResults;
+  searchMovie(title: string): Observable<Search> {
+    return this.http.get<Search>(`${this.movieSearchApiBase}${title}`);
   }
 
   getMovie(title: string) {
-    return this.http.get(`${this.movieApiBase}${title}`);
+    return this.http.get<Movie>(`${this.movieApiBase}${title}`);
   }
 
-  country: Observable<any> | undefined;
+  country: Observable<Country[]> | undefined;
   currency: string[] = [];
+  population: number[] = [];
+  populationSum: string = '';
+
   getCountry(name: string) {
     this.currency = [];
+    this.population = [];
 
-    this.country = this.http.get(
+    this.country = this.http.get<Country[]>(
       `${this.countryApiBase}${name}${this.countryApiEnd}`
     );
 
-    this.country.subscribe((x) => console.log(x));
+    this.country?.subscribe((x) => {
+      this.population.push(x[0].population);
+      if (this.population.length) {
+        this.populationSum = this.population
+          .reduce((acc, curr) => curr + acc, 0)
+          .toLocaleString('en');
+      }
+    });
 
-    this.country.subscribe((x) => {
+    this.country.subscribe((x: Country[]) => {
       const curr: string = Object.keys(x[0].currencies).join();
-      const symbol = x[0].currencies[curr]?.symbol;
+      const symbol: string = x[0].currencies[curr]?.symbol;
       this.currency.push(`${curr} ${symbol}`);
     });
 
+    this.countries = [{ country: '', flag: '' }];
     this.country.subscribe((country) => {
       const countryCode = country[0].cca2.toLowerCase();
-      this.flag = `${this.flagApiBase}${countryCode}${this.flagApiEnd}`;
+
+      this.countries.push({
+        country: country[0].name.common,
+        flag: `${this.flagApiBase}${countryCode}${this.flagApiEnd}`,
+      });
     });
 
-    return this.country;
+    return this.http.get<Country[]>(
+      `${this.countryApiBase}${name}${this.countryApiEnd}`
+    );
   }
 }
